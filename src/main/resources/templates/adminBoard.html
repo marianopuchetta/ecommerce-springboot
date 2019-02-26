@@ -16,60 +16,74 @@
 <link rel="stylesheet" type="text/css"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <head>
-        <title>AdminBoard</title>
-        <style>
-        #welcome{
-        color:red;
-       position:absolute;  top:30px;left:15px;
-       padding-bottom:1px;
-        }
-        </style>
-    </head>
-    <body>
-    <section layout:fragment="custom-content">
-    <br><br>
-    <div id="welcome">
-    <h3>welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</h3>
-    </div>
-      <br>
-        <h3>Administrator Page</h3>
-    <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a>
-    
-    <button>Products</button>
-    <button>Users</button>
-    		<div id="container">
-					<section th:replace="productsAdmin :: productsAd" ></section>
-					         <script>
-    $(document).ready(function () {
-		   loadData();
-		   
-       });
-       
-     function loadData(){
-     $.ajax({
-			  type: 'get',
-			 url: '/products/adminFragment',
-		         success: function(data){
-				 $('#container').html(data);
-				 
-				},
-			  async:false
-			})  
-     }
-     </script>
-		 </div>
-    <h1>2</h1>
-          
-			
-			<h2>This is adminBoard.html</h2>
-  
-	
-  
-	
-	
+<title>AdminBoard</title>
+<style>
+#welcome {
+	color: red;
+	position: absolute;
+	top: 30px;
+	left: 15px;
+	padding-bottom: 1px;
+}
 
-    </section>
+ @media only screen and (max-width: 700px){
+ 
+ #logout{
+ top:50px;
+ position:relative;
+ color:red;
+ }
+ #panel{
+ top:50px;
+ position:relative;
+ 
+ }
+ #container{
+ left:-10px;
+ position:relative;
+ }
+ }
 
-    </body>
+</style>
+</head>
+<body>
+	<section layout:fragment="custom-content">
+		<br>
+		<br>
+		<div id="welcome">
+			<h3>
+				welcome Administrator(<span sec:authentication="principal.username">Admin</span>)
+			</h3>
+		</div>
+		<br>
+	
+		<p id="logout" sec:authorize="isAuthenticated()">
+			<a th:href="@{/logout}">Logout</a>
+        <div id="panel">
+			<button class=" btn-primary">Products</button>
+			<button class="btn-primary">Users</button>
+		</div>
+		<div id="container">
+			<section th:replace="productsAdmin :: productsAd"></section>
+			<script>
+				$(document).ready(function() {
+					loadData();
 
-    </html>
+				});
+
+				function loadData() {
+					$.ajax({
+						type : 'get',
+						url : '/products/adminFragment',
+						success : function(data) {
+							$('#container').html(data);
+
+						},
+						async : false
+					})
+				}
+			</script>
+		</div>
+	</section>
+</body>
+</html>
