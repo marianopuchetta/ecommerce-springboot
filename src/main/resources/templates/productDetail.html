@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorate="layout">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	
+
+ 
+<head>
+<style>
+@import url(http://fonts.googleapis.com/css?family=Chango);
+@import url(http://fonts.googleapis.com/css?family=Fjalla+One);
+
+#img{
+position:relative;
+left:-90px;
+border: 3px solid #73AD21;
+width: 30%;
+display: block;
+top:-50px;
+}
+#title{
+left:150px;
+top:35px;
+font-size:75px;
+font-family:Chango,cursive;
+color:black;
+text-shadow: 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+
+}
+label{
+font-family:Fjalla One;
+position:relative;
+right:-10px;
+font-size:20px;
+}
+.col-sm-4{
+font-family:Fjalla One;
+color:red;
+font-size:20px;
+}
+.col-sm-8{
+top:45px;
+}
+
+#btn{
+position:relative;
+left:560px;
+top:-570px;
+}
+#btn:hover{
+color:black;
+}
+
+ @media only screen and (max-width: 700px){
+#img{
+top :-310px;
+left:60px;
+border: 3px solid #73AD21;
+width: 60%;
+
+
+}
+#title{
+font-size:45px;
+top:10px;
+left:-5px;
+}
+label{
+left:10px;
+
+font-size:20px;
+}
+.col-sm-8{
+top:250px;
+}
+.col-sm-6{
+top:250px;
+}
+.col-sm-4{
+color:red;
+
+font-size:20px;
+  }
+#btn{
+position:relative;
+top:-300px;
+left:205px;
+with:100%;
+
+} 
+}
+</style>
+<title>Product Detail</title>
+</head>
+<body>
+	<section layout:fragment="custom-content">
+
+		<div class="container" id="cont">
+
+			<div class="row">
+				<div class="col-sm-6">
+                            <div>
+							<h2>
+							  <label id="title" th:text="${product.title}">Title</label>
+							  </h2>
+							</div>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<form id="form" class="form-horizontal" th:object="${product}">
+						<div>
+							<div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group">
+								<label class="col-sm-4 control-label">Product Id: </label> <label
+								class="form-control-static"	th:text="${product.id}">Product Id</label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">ArtNum: </label> <label
+								class="form-control-static"	th:text="${product.numArt}">ArtNum</label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">Description: </label> <label
+								class="form-control-static"	th:text="${product.description}">Description</label>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">Price: </label> <label
+									class="form-control-static" th:text="${product.price}">Price</label>
+							</div>
+							<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+								<label class="col-sm-4 control-label">Url image: </label> <a  th:href="${product.imageUrl}"><label
+									class="form-control-static" th:text="${product.imageUrl}">imageUrl</label></a>
+							</div>
+
+							<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+								<label class="col-sm-4 control-label">In Stock: </label> <label
+									class="form-control-static" th:text="${product.inStock}">In
+									Stock</label>
+							</div>
+							
+						</div>
+								
+
+					</form>
+				
+			</div>
+			                   <div >
+								<img class="img-responsive" id="img" th:src="${product.imageUrl}" alt="Card">
+								<div th:if="${product.inStock} > 0 ">
+								<button id="btn" class="btn btn-lg btn-success">Add to Cart</button>
+								</div>
+				</div>	
+								</div>
+						
+		</div>
+	</section>
+
+</body>
+</html>

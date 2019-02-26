@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Buy-A-Thing</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<style>
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+#navbar{
+padding-top:-25px;
+}
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: black;
+	color: white;
+	height: 20px;
+	text-align: center;
+}
+.glyphicon {
+    font-size: 17px;
+}
+h6 {
+	margin: 5px;
+}
+#homeButton{
+font-family:Lobster;
+font-size:20px;
+}
+#userNameDisplay {
+	color: rgba(250, 250, 250, 0.4);
+	margin: 15px;
+}
+</style>
+</head>
+<body>
+
+
+		
+ <nav id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand active" id="homeButton" th:href="@{/}">Buy-A-Thing</a>&nbsp;
+
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+                	  <!--    <li id="userNameDisplay" sec:authorize="isAuthenticated()"
+						th:text="${#authentication.principal.username}">
+						</li>-->
+					<li sec:authorize="isAuthenticated()"><a
+						class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="${#authentication.principal.username}">
+							<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<li sec:authorize="hasRole('ROLE_ADMIN')">
+							<a th:href="@{/admin}">Administrator</a>
+								</li>
+							<li>
+							<a th:href="${'/user/' + #authentication.principal.username}">User</a>
+							</li>
+						</ul>
+						</li>
+					<li sec:authorize="!isAuthenticated()">
+					<a	th:href="@{/registration}" data-target="#theModalRegistration"
+						data-toggle="modal"><span class="glyphicon glyphicon-user"></span>
+							Sign Up</a>
+							</li>
+
+					<li sec:authorize="!isAuthenticated()">
+					<a th:href="@{/login}"
+						data-target="#theModal" data-toggle="modal"> <span
+							class="glyphicon glyphicon-log-in"></span>Login
+					</a>
+					</li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</li>
+					<li><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+ 
+
+	<div class="modal fade text-center" id="theModal">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	<div class="modal fade text-center" id="theModalRegistration">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+<div class="container">
+	<div layout:fragment="custom-content">
+
+			<!-- Your Page Content Here -->
+		</div>
+
+	</div>
+	
+	<script th:src="@{'/assets/js/jquery-2.1.4.min.js'}"></script>
+	<script th:src="@{'/assets/bootstrap/js/bootstrap.min.js'}"></script>
+
+	<div class="footer">
+		<h6>@2019 Buy-A-Thing</h6>
+	</div>
+
+</body>
+</html>

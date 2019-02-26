@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	layout:decorator="layout">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<title>List</title>
+
+</head>
+<body>
+	<section layout:fragment="custom-content">
+
+		<div class="container">
+			<div id="productsAdmin" th:fragment="productsAd">
+      <br><br>
+
+				<h2>List of products</h2>
+				
+				<table class="table table-stripped">
+					<tr>
+						<th>Id</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Image Url</th>
+						<th>List</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+
+					<tr th:each="product : ${products}">
+						<td th:text="${product.id}"></td>
+						<td th:text="${product.description}"></td>
+						<td th:text="${product.price}"></td>
+						<td th:text="${product.imageUrl}"></td>
+						<td><a th:href="${'/product/show/' + product.id}">View</a></td>
+						<td><a th:href="${'/admin/product/edit/' + product.id}">Edit</a></td>
+						<td><a>Delete</a></td>
+					</tr>
+				</table>
+
+				<div class="row">
+					<div class="col-sm-3">
+						<button>New Product</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>
+<style>
+
+}
+
+</style>
