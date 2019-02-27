@@ -100,9 +100,9 @@ font-size:20px;
 							</li>
 
 					<li sec:authorize="!isAuthenticated()">
-					<a th:href="@{/login}"
+					<a th:href="@{/cart}"
 						data-target="#theModal" data-toggle="modal"> <span
-							class="glyphicon glyphicon-log-in"></span>Login
+							class="glyphicon glyphicon-log-in"></span>Log
 					</a>
 					</li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
