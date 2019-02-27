@@ -37,7 +37,7 @@ public class MainController {
     }
     @GetMapping("admin/productForm")
     public String productForm(Model model) {
-    	return "productForm";
+    	return "admin/productForm";
     }
  
    

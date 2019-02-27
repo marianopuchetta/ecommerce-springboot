@@ -39,14 +39,6 @@ public class ProductController {
 		 return "products";
 		}
 		
-	@RequestMapping("/productDel/{id}")
-	public ResponseEntity<String> deleteProduct(@PathVariable("id")long id){
-		System.out.println("product delete with ID = " + id + "...");
-		
-		productRepository.deleteById(id);
-		
-		return new ResponseEntity<>("Product has been delete", HttpStatus.OK);
-	}
 	@GetMapping("/products/fragment")
 	public ModelAndView listOfProducts() {
 	     ModelAndView mv = new ModelAndView("products :: content");
@@ -59,14 +51,6 @@ public class ProductController {
 	    mv.addObject("products", productRepository.findAll());
 	     return mv;
 	    }
-	/*
-	@RequestMapping("/productDetail/{id}")
-	public ModelAndView getProduct(@PathVariable Long id) {
-		ModelAndView mv = new ModelAndView("productDetail");
-		mv.addObject("productDetail",productRepository.findById(id));
-		System.out.println(productRepository.findById(id));
-		return mv;
-	}*/
 	
 	/*
 	@RequestMapping("/productDetail/{numArt}")
@@ -134,7 +118,7 @@ public class ProductController {
     @RequestMapping("admin/product/new")
     public String newProduct(Model model) {
     	model.addAttribute("product", new Product());
-    	return "admin/productForm";
+    	return "productForm";
     }
     
     @RequestMapping(value ="admin/product", method = RequestMethod.POST)
@@ -142,10 +126,11 @@ public class ProductController {
     	Product savedProduct = productRepository.save(product);
     	return "redirect:/product/show/" + savedProduct.getId();
     }
-    /*
-    @RequestMapping("/product/delete/{id}")
-    public String delete(@PathVariable Integer id) {
-    	productService.delete(id);
-    	return"redirect:/product/list";
-    }*/
+    
+    @RequestMapping("admin/product/delete/{id}")
+    public String delete(@PathVariable long id) {
+    	System.out.println("Delete product with Id: " + id);
+    	productRepository.deleteById(id);
+    	return"redirect:/productsAdmin";
+    }
 }
