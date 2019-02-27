@@ -134,7 +134,7 @@ public class ProductController {
     @RequestMapping("admin/product/new")
     public String newProduct(Model model) {
     	model.addAttribute("product", new Product());
-    	return "/productForm";
+    	return "admin/productForm";
     }
     
     @RequestMapping(value ="admin/product", method = RequestMethod.POST)
