@@ -19,7 +19,7 @@ public class MainController {
     }
     @GetMapping("/cart")
     public String getCar(Model model) {
-    	return "/cart";
+    	return "cart";
     }
    
 
