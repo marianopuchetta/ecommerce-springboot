@@ -99,14 +99,19 @@ font-size:20px;
 							Sign Up</a>
 							</li>
 
-				
+					<li sec:authorize="!isAuthenticated()">
+					<a th:href="@{/login}"
+						data-target="#theModal" data-toggle="modal"> <span
+							class="glyphicon glyphicon-log-in"></span>Login
+					</a>
+					</li>
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a>
 					</li>
-				    <li sec:authorize="!isAuthenticated()">
-					 <a th:href="@{/login}" 
+				    <li sec:authorize="isAuthenticated()">
+					 <a th:href="@{/cart}" 
 					    data-target="#theModalPay" data-togle="modal"><span 
-					    class="glyphicon glyphicon-shopping-cart"></span>login
+					    class="glyphicon glyphicon-shopping-cart"></span>cart
 					  </a>
 						  </li>
 				</ul>
