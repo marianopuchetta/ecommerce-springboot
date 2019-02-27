@@ -52,13 +52,25 @@ public class ProductController {
 	     return mv;
 	    }
 	
-	/*
-	@RequestMapping("/productDetail/{numArt}")
-	public Optional<Product> findByNumArt(@PathVariable long numArt) {
-		System.out.println(numArt);
-		Optional<Product> products = productRepository.findById(numArt);
-		return products;
-	}*/
+    @RequestMapping("admin/product/new")
+    public String newProduct(Model model) {
+    	model.addAttribute("product", new Product());
+    	return "productForm";
+    }
+    
+    @RequestMapping(value ="admin/product", method = RequestMethod.POST)
+    	public String saveOrUpdateProduct(Product product) {
+    	Product savedProduct = productRepository.save(product);
+    	return "redirect:/product/show/" + savedProduct.getId();
+    }
+    
+    @RequestMapping("admin/product/delete/{id}")
+    public String delete(@PathVariable long id) {
+    	System.out.println("Delete product with Id: " + id);
+    	productRepository.deleteById(id);
+    	return"redirect:admin/productsAdmin";
+    }
+	
 	@RequestMapping("product/show/{id}")
 	public String getProduct(@PathVariable long id,Model model) {
 		model.addAttribute("product",productRepository.findById(id));
@@ -69,6 +81,13 @@ public class ProductController {
 		model.addAttribute("product", productRepository.findById(id));
 		return "productForm";
 	}
+	/*
+	@RequestMapping("/productDetail/{numArt}")
+	public Optional<Product> findByNumArt(@PathVariable long numArt) {
+		System.out.println(numArt);
+		Optional<Product> products = productRepository.findById(numArt);
+		return products;
+	}*/
 	/*
 	@RequestMapping("/product/edit/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
@@ -115,22 +134,5 @@ public class ProductController {
 		return "product/productForm";
 	}
 	*/
-    @RequestMapping("admin/product/new")
-    public String newProduct(Model model) {
-    	model.addAttribute("product", new Product());
-    	return "productForm";
-    }
-    
-    @RequestMapping(value ="admin/product", method = RequestMethod.POST)
-    	public String saveOrUpdateProduct(Product product) {
-    	Product savedProduct = productRepository.save(product);
-    	return "redirect:/product/show/" + savedProduct.getId();
-    }
-    
-    @RequestMapping("admin/product/delete/{id}")
-    public String delete(@PathVariable long id) {
-    	System.out.println("Delete product with Id: " + id);
-    	productRepository.deleteById(id);
-    	return"redirect:/productsAdmin";
-    }
+
 }
