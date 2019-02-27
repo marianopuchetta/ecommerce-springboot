@@ -89,6 +89,11 @@ font-size:20px;
 							</li>
 						</ul>
 						</li>
+						<li sec:authorize="isAuthenticated()">
+					<a	th:href="@{/cart}" data-target="#theModalPay"
+						data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>
+						</a>
+							</li>
 					<li sec:authorize="!isAuthenticated()">
 					<a	th:href="@{/registration}" data-target="#theModalRegistration"
 						data-toggle="modal"><span class="glyphicon glyphicon-user"></span>
@@ -104,11 +109,7 @@ font-size:20px;
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a>
 					</li>
-					<li sec:authorize="isAuthenticated()">
-					<a	th:href="@{/cart}" data-target="#theModalPay"
-						data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>
-						</a>
-							</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -120,7 +121,11 @@ font-size:20px;
 			<div class="modal-content"></div>
 		</div>
 	</div>
-	
+	<div class="modal fade text-center" id="theModalRegistration">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
+	</div>
 	<div class="modal fade text-center" id="theModalPay">
 		<div class="modal-dialog">
 			<div class="modal-content"></div>
