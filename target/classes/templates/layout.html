@@ -108,9 +108,11 @@ font-size:20px;
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a>
 					</li>
-						<li sec:authorize="isAuthenticated()">
-						<a th:href="@{/cart}" data-target="#theModalPay"
-						  data-togle="modal"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+				    <li sec:authorize="!isAuthenticated()">
+					 <a th:href="@{/login}" 
+					    data-target="#theModalPay" data-togle="modal"><span 
+					    class="glyphicon glyphicon-shopping-cart"></span>login
+					  </a>
 						  </li>
 				</ul>
 			</div>
