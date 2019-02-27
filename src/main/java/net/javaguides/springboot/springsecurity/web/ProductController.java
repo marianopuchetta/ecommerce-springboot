@@ -130,11 +130,13 @@ public class ProductController {
 		model.addAttribute("product", productService.getById(id));
 		return "product/productForm";
 	}
+	*/
     @RequestMapping("/product/new")
     public String newProduct(Model model) {
     	model.addAttribute("product", new Product());
-    	return "product/productForm";
-    }*/
+    	return "/productForm";
+    }
+    
     @RequestMapping(value ="admin/product", method = RequestMethod.POST)
     	public String saveOrUpdateProduct(Product product) {
     	Product savedProduct = productRepository.save(product);

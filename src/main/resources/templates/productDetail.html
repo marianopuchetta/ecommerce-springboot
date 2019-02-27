@@ -25,80 +25,115 @@
 
 #img{
 position:relative;
-left:-90px;
 border: 3px solid #73AD21;
-width: 30%;
-display: block;
-top:-50px;
+width: 25%;
+top:20px;
+left:20px;
 }
+
 #title{
-left:150px;
-top:35px;
-font-size:75px;
+font-size:45px;
 font-family:Chango,cursive;
 color:black;
 text-shadow: 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
-
+bottom:510px;
+left:400px;
+}
+#contorno{
+ overflow: hidden;
+position:relative;
+border:solid 2px black;
+width: 110%;
+height: 500px;
+right:90px;
+top:80px;
+background: rgb(244, 246, 249);
 }
 label{
 font-family:Fjalla One;
 position:relative;
-right:-10px;
 font-size:20px;
+left:500px;
 }
 .col-sm-4{
+position:relative;
 font-family:Fjalla One;
 color:red;
 font-size:20px;
 }
-.col-sm-8{
-top:45px;
+.col-sm-6{
+bottom:470px;
+right:100px;
 }
 
 #btn{
 position:relative;
-left:560px;
-top:-570px;
+left:1100px;
+bottom:430px;
 }
 #btn:hover{
 color:black;
 }
+#back{
+position:relative;
+top:-20px;
+left:1250px;
+
+}
 
  @media only screen and (max-width: 700px){
 #img{
-top :-180px;
-left:100px;
+top :15px;
+left:40px;
 border: 3px solid #73AD21;
-width: 60%;
+width: 70%;
 }
 #title{
-font-size:45px;
-top:350px;
-left:-5px;
+font-size:20px;
+bottom:1px;
+left:35px;
+
 }
 label{
-left:10px;
-
-font-size:20px;
+left:100px;
+font-size:17px;
 }
 .col-sm-8{
-top:650px;
+top:50px;
+
 }
 .col-sm-6{
-top:250px;
+top:30px;
+font-size:8px;
 }
 .col-sm-4{
 color:red;
-
-font-size:20px;
+font-size:19px;
   }
 #btn{
 position:relative;
-top:-150px;
-left:190px;
-with:100%;
+top:20px;
+left:65px;
+
 
 } 
+#contorno{
+ overflow: hidden;
+position:relative;
+border:solid 2px black;
+width: 110%;
+height: 10%;
+right:15px;
+top:65px;
+background: rgb(244, 246, 249);
+}
+#back{
+position:relative;
+top:-40px;
+left:110%;
+
+
+}
 }
 </style>
 <title>Product Detail</title>
@@ -107,9 +142,18 @@ with:100%;
 	<section layout:fragment="custom-content">
 
 		<div class="container" id="cont">
+		                     <div id="contorno">
+		                     
+		                      <div>
+								<img class="img-responsive" id="img" th:src="${product.imageUrl}" alt="Card">
+								
+			               	</div>
+			               	<div th:if="${product.inStock} > 0 ">
+								<button id="btn" class="btn btn-lg btn-success">Add to Cart</button>
+								</div>
 
 			<div class="row">
-				<div class="col-sm-6">
+				<div >
                             <div>
 							<h2>
 							  <label id="title" th:text="${product.title}">Title</label>
@@ -119,52 +163,51 @@ with:100%;
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-8">
-					<form id="form" class="form-horizontal" th:object="${product}">
+				<div class="col-sm-6">
+					<form id="form"  th:object="${product}">
 						<div>
-							<div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group">
+							<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')" >
 								<label class="col-sm-4 control-label">Product Id: </label> <label
-								class="form-control-static"	th:text="${product.id}">Product Id</label>
+								th:text="${product.id}">Product Id</label>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">ArtNum: </label> <label
-								class="form-control-static"	th:text="${product.numArt}">ArtNum</label>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Description: </label> <label
-								class="form-control-static"	th:text="${product.description}">Description</label>
+							<div class="form-group" >
+								<label class="col-sm-4 control-label">Cod: </label> <label
+									th:text="${product.numArt}">ArtNum</label>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label">Price: </label> <label
-									class="form-control-static" th:text="${product.price}">Price</label>
+									 th:text="${product.price}">Price</label>
 							</div>
-							<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div  class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
 								<label class="col-sm-4 control-label">Url image: </label> <a  th:href="${product.imageUrl}"><label
-									class="form-control-static" th:text="${product.imageUrl}">imageUrl</label></a>
+									 th:text="${product.imageUrl}">imageUrl</label></a>
 							</div>
 
-							<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class ="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
 								<label class="col-sm-4 control-label">In Stock: </label> <label
-									class="form-control-static" th:text="${product.inStock}">In
+								 th:text="${product.inStock}">In
 									Stock</label>
 							</div>
-							
+								<div class="form-group" >
+								<label class="col-sm-4 control-label">Description: </label> <label
+									class="form-group" th:text="${product.description}">Description</label>
+							</div>
+							 
 						</div>
-								
-
+                   <a id="back" onclick="history.back()" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-circle-arrow-left"></span> 
+        </a>
 					</form>
 				
 			</div>
-			                   <div >
-								<img class="img-responsive" id="img" th:src="${product.imageUrl}" alt="Card">
-								<div th:if="${product.inStock} > 0 ">
-								<button id="btn" class="btn btn-lg btn-success">Add to Cart</button>
+			            	 
 								</div>
-				</div>	
+								 
 								</div>
-						
+					
 		</div>
+		
 	</section>
-
+ 
 </body>
 </html>

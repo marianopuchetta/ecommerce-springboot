@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
+
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Buy-A-Thing</title>
@@ -21,11 +21,13 @@
 	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<head>
 <style>
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 
 #navbar{
-padding-top:-25px;
+
 }
 .footer {
 	position: fixed;
@@ -102,8 +104,11 @@ font-size:20px;
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
 							class="glyphicon glyphicon-log-out"></span> Logout</a>
 					</li>
-					<li><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-					</li>
+					<li sec:authorize="isAuthenticated()">
+					<a	th:href="@{/cart}" data-target="#theModalPay"
+						data-toggle="modal"><span class="glyphicon glyphicon-shopping-cart"></span>
+						</a>
+							</li>
 				</ul>
 			</div>
 		</div>
@@ -116,6 +121,11 @@ font-size:20px;
 		</div>
 	</div>
 	<div class="modal fade text-center" id="theModalRegistration">
+		<div class="modal-dialog">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+	<div class="modal fade text-center" id="theModalPay">
 		<div class="modal-dialog">
 			<div class="modal-content"></div>
 		</div>

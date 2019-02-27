@@ -17,6 +17,10 @@ public class MainController {
     public String login(Model model) {
         return "login";
     }
+    @GetMapping("/cart")
+    public String getCar(Model model) {
+    	return "/cart";
+    }
    
 
     @GetMapping("/user")
