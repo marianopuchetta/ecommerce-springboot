@@ -146,7 +146,7 @@ text-align: center;
 								<h1 id="title" th:text="${product.title}"></h1>
 								 <p class="price" th:text="${product.price}"></p>
 								<p>
-									<button>Add to cart </button>
+									<button th:href="${'/addTocart/' + product.id}">Add to cart </button>
 				
 								</p>
 							</div>

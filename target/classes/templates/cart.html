@@ -4,13 +4,18 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
 	>
-<head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <link rel="stylesheet" type="text/css"
 	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+<head>
+<style>
+.glyphicon-trash{
+font-size:12px;
+}
+</style>
 
 <title>Cart</title>
 </head>
@@ -30,14 +35,14 @@
 				<table class="table" >
 				<tr>
 				  <th>Cod</th>
-				  <th>Description</th>
+				  <th>Product</th>
 				  <th>Quantity</th>
 				  <th>Price</th>
-				  <th>Subtotal</th>
+				  <th>Amount</th>
 				  <th></th>
 				</tr>
-				<tr>
-				<td></td>
+				<tr th:each="cartDetail : ${cartDetails}">
+				<td th:text="${cartDetail.product.numArt}"></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -48,10 +53,10 @@
 			</div>
 		</div>
 		<div class="row">
-					<div class="col-sm-3">
-						<button>Pay</button>
+					
+						<button class="btn btn-success btn-lg">Pay</button>
 						<br><br><br>
-					</div>
+					
 				</div>
         </div>
         <div class="modal-footer">

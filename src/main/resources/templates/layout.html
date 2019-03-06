@@ -26,9 +26,8 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=Lobster);
 
-#navbar{
 
-}
+
 .footer {
 	position: fixed;
 	left: 0;
@@ -101,17 +100,17 @@ font-size:20px;
 						data-target="#theModal" data-toggle="modal"> <span
 							class="glyphicon glyphicon-log-in"></span>Login
 					</a>
-					</li>
-					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
-							class="glyphicon glyphicon-log-out"></span> Logout</a>
-					</li>
-					
+					</li>	
 					<li sec:authorize="isAuthenticated()">
 					<a th:href="@{/cart}"
 						data-target="#theMod" data-toggle="modal"> <span
 							class="glyphicon glyphicon-shopping-cart"></span>
 					</a>
 					</li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span
+							class="glyphicon glyphicon-log-out"></span> Logout</a>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
@@ -128,7 +127,7 @@ font-size:20px;
 			<div class="modal-content"></div>
 		</div>
 	</div>
-		<div class="modal fade text-center" id="theMod">
+		<div class="modal  text-center" id="theMod">
 		<div class="modal-dialog">
 			<div class="modal-content"></div>
 		</div>
